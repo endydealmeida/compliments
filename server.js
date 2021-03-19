@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const app = express();
 
 const compliments = [
     "You like nice today",
@@ -18,8 +19,6 @@ function getRandomCompliment() {
     return compliments[randomIndex];
 }
 
-const app = express();
-
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
 });
@@ -28,6 +27,35 @@ app.get("/compliment", function (req, res) {
     res
         .json({
             compliment: getRandomCompliment()
+        })
+        .end();
+});
+
+const insults = [
+    "Fuck you",
+    "Piece of shit",
+    "Jerk",
+    "Fucking idiot",
+    "Dork",
+    "Cunt",
+    "Bastard",
+    "Scumbag",
+    "Idiot"
+];
+
+function getRandomInsult() {
+    const randomIndex = Math.floor(Math.random() * insults.length);
+    return insults[randomIndex];
+}
+
+app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/insult", function (req, res) {
+    res
+        .json({
+            insult: getRandomInsult()
         })
         .end();
 });
