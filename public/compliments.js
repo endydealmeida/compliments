@@ -27,3 +27,18 @@ document
                 console.error(err);
             });
     });
+
+document
+    .querySelector(".request-brinsult")
+    .addEventListener("click", function () {
+        fetch("/brinsult")
+            .then(function (res) {
+                return res.json();
+            })
+            .then(function (data) {
+                document.querySelector(".text").innerText = data.brinsult;
+            })
+            .catch(function (err) {
+                console.error(err);
+            });
+    });
